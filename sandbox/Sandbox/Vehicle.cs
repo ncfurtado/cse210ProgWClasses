@@ -1,24 +1,8 @@
-using System;
-
-class Program
-{
-    // static void Main(string[] args)
-    // {
-    //     Console.WriteLine("Hello Sandbox World!");
-    // }
-    public static void Main(string[] args)
-    {
-        Car car1 = new Car(2006, "Hyundai", "Sonata", 4);
-
-        Ford ford1 = new Ford(2008, "F-150", 2);
-        Console.WriteLine(ford1.GetYearManufactured());
-    }
-    public class Vehicle
+public class Vehicle
 {
     private int _yearManufactured;
     private string _manufacturer;
     protected string _modelName;
-
 
     public Vehicle(int yearManufactured, string manufacturer, string modelName)
     {
@@ -33,7 +17,6 @@ class Program
     }
 }
 
-
 public class Car : Vehicle
 {
     private int _numberOfDoors;
@@ -44,7 +27,6 @@ public class Car : Vehicle
     }
 }
 
-
 public class Ford : Car
 {
     public Ford(int yearManufactured, string modelName, int numberOfDoors)
@@ -53,4 +35,15 @@ public class Ford : Car
         
     }
 }
-}
+
+
+// public class Program2
+// {
+//     public static void Main(string[] args)
+//     {
+//         Car car1 = new Car(2006, "Hyundai", "Sonata", 4);
+
+//         Ford ford1 = new Ford(2008, "F-150", 2);
+//         Console.WriteLine(ford1.GetYearManufactured());
+//     }
+// }
