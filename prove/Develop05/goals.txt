@@ -1,0 +1,4 @@
+2850
+SimpleGoal:Goals,create one more goal,1000,True
+EternalGoal:Study the scriptures!,Read scriptures for at least onece a day 10mins,150
+ChecklistGoal:checklist working,get the checklist workign and check it twice,200,300,2/2
