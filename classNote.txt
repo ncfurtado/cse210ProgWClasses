@@ -1,0 +1,2 @@
+JSON stands for Javascript Object Notation
+Ask coworkers and professionals for book reccommendations.

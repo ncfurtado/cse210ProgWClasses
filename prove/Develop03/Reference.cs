@@ -1,17 +1,46 @@
 class Reference
 {
-    private Word[] _words;
-    public Reference(string text)
+    private string _book;
+    private string _chapter;
+    private int _verse;
+
+    public Reference()
+    {}
+
+    
+    public Reference(string book, string chapter, int verse)
     {
-        string[] parts = text.Split();
-        // Split the text of the verse into individual words.
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+    }
 
-        _words = new Word[parts.Length];
-        // Create an array of words.
+    public string GetReference()
+    {
 
-        for (int i = 0; i < parts.Length; i++)
-        {
-            _words[i] = new Word(parts[i]);
-        }
+        return $"{GetBook()} {GetChapter()} : {GetVerse()}";
+    }
+
+    
+    public string GetBook()
+    {
+        return _book;
+    }
+    
+    
+    public string GetChapter()
+    {
+        return _chapter;
+    }
+    public int GetVerse()
+    {
+        return _verse;
+    }
+
+
+    public void PickScripture()
+    // Pass a list of scriptures 
+    {
+
     }
 }

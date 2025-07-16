@@ -32,9 +32,7 @@ class Program
             menuChoice = int.Parse(Console.ReadLine());
             switch (menuChoice)
             {
-
-                case 1:
-                    // Create New Goal
+                case 1: // Create New Goal
                     Console.WriteLine("The types of goals are:");
                     Console.WriteLine("1. Simple Goal ");
                     Console.WriteLine("2. Eternal Goal ");
@@ -74,8 +72,7 @@ class Program
                     break;
 
 
-                case 2:
-                    // List Goals
+                case 2: // List Goals
                     int numberOfGoals = 0;
                     foreach (SimpleGoal sGoal in simpleGoals)
                     {
@@ -112,8 +109,7 @@ class Program
                     break;
 
 
-                case 3:
-                    // Save Goals
+                case 3: // Save Goals
                     Console.Write("What is the file to save your goals to? ");
                     string fileName = Console.ReadLine();
                     using (StreamWriter outputFile = new StreamWriter(fileName))
@@ -135,8 +131,7 @@ class Program
                     break;
 
 
-                case 4:
-                    // Load Goals
+                case 4: // Load Goals
                     Console.Write("What is the filename for the goal file? ");
                     string readFile = Console.ReadLine();
 
@@ -225,8 +220,7 @@ class Program
                     break;
 
 
-                case 5:
-                    // Record Event
+                case 5: // Record Event
                     Console.WriteLine($"The goals are:");
                     int goalNumber = 1;
 
@@ -350,8 +344,7 @@ class Program
                     break;
 
 
-                case 6:
-                    // Quit
+                case 6: // Quit
                     Console.WriteLine("Thank you!");
                     Environment.Exit(0);
                     break;

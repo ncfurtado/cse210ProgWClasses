@@ -1,0 +1,176 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>420</x><y>280</y><w>210</w><h>80</h></coordinates><panel_attributes>Program
+--
+- menuChoice
+--
++ Menu()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>870</x><y>0</y><w>210</w><h>610</h></coordinates><panel_attributes>&lt;Abstract&gt;
+Assignment
+-
+#_assignmentId: string
+#_title: string
+#_description: string
+#_dueDate: DateTime
+#_priority: Priority
+#_status: AssignmentStatus
+#_estimatedHours: double
+#_actualHours: double
+#_course: Course
+#_dateCreated: DateTime
+#_lastModified: DateTime
+-
++Assignment(id: string, title: string, dueDate: DateTime, course: Course)
++GetAssignmentId(): string
++GetTitle(): string
++SetTitle(title: string): void
++GetDescription(): string
++SetDescription(description: string): void
++GetDueDate(): DateTime
++SetDueDate(dueDate: DateTime): void
++GetPriority(): Priority
++SetPriority(priority: Priority): void
++GetStatus(): AssignmentStatus
++SetStatus(status: AssignmentStatus): void
++GetCourse(): Course
++GetEstimatedHours(): double
++SetEstimatedHours(hours: double): void
++GetActualHours(): double
++AddActualHours(hours: double): void
++GetDaysUntilDue(): int
++IsComplete(): bool
++CalculateEstimatedTime(): double*
++GetRequiredResources(): List~string~*
++GetCompletionCriteria(): List~string~*
++Equals(other: Assignment): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>880</y><w>530</w><h>280</h></coordinates><panel_attributes>ProgressTracker
+-
+-_progressData: Dictionary~string, AssignmentProgress~
+--
+
++ProgressTracker()
++UpdateProgress(assignmentId: string, percentage: double): void
++GetProgress(assignmentId: string): double
++MarkComplete(assignmentId: string): void
++MarkIncomplete(assignmentId: string): void
++GetCompletionRate(courseId: string): double
++GetOverallCompletionRate(): double
++GetProductivityReport(startDate: DateTime, endDate: DateTime): ProductivityReport
++GetTimeSpentOnAssignment(assignmentId: string): TimeSpan
++LogTimeSpent(assignmentId: string, timeSpent: TimeSpan): void
++GetEstimatedTimeRemaining(assignmentId: string): TimeSpan
++GetAssignmentsByProgress(minProgress: double, maxProgress: double): List~Assignment~
++GenerateProgressReport(): string
++ResetProgress(assignmentId: string): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1240</x><y>590</y><w>540</w><h>450</h></coordinates><panel_attributes>GroupAssignment 
+-
+ -_groupMembers: List~string~
+-_groupLeader: string
+-_meetingSchedule: List~DateTime~
+-_individualTasks: Dictionary~string, List~string~~
+-_collaborationPlatform: string
+-_presentationRequired: bool
+-_groupSize: int
+-
++GroupAssignment(id: string, title: string, dueDate: DateTime, course: Course, groupSize: int)
++AddGroupMember(memberName: string): void
++RemoveGroupMember(memberName: string): bool
++GetGroupMembers(): List~string~
++SetGroupLeader(leader: string): void
++GetGroupLeader(): string
++AddMeeting(meetingTime: DateTime): void
++GetMeetingSchedule(): List~DateTime~
++AssignTask(memberName: string, task: string): void
++GetTasksForMember(memberName: string): List~string~
++GetCollaborationPlatform(): string
++SetCollaborationPlatform(platform: string): void
++GetPresentationRequired(): bool
++SetPresentationRequired(required: bool): void
++GetGroupSize(): int
++CalculateEstimatedTime(): double
++GetRequiredResources(): List~string~
++GetCompletionCriteria(): List~string~
++Clone(): Assignment
++GenerateTaskDistribution(): string
++ScheduleGroupMeeting(dateTime: DateTime): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>280</y><w>90</w><h>110</h></coordinates><panel_attributes>Priority
+Enum
+-
+LOW
+MEDIUM
+HIGH
+URGENT
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>280</y><w>310</w><h>340</h></coordinates><panel_attributes>Course
+-
+- _courseId: string
+- _courseName: string
+-  _instructor: string
+- _creditHours: int
+- _semester: string
+- _courseColor: Color
+- _assignments: List&lt;Assignment&gt;
+
+-
++Course(id: string, name: string, instructor: string)
++GetCourseId(): string
++GetCourseName(): string
++GetInstructor(): string
++GetCreditHours(): int
++SetCreditHours(hours: int): void
++AddAssignment(assignment: Assignment): void
++RemoveAssignment(assignmentId: string): bool
++GetAssignments(): List&lt;Assignment&gt;
++GetAssignmentCount(): int
++GetAverageGrade(): double
++ToString(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>690</y><w>590</w><h>170</h></coordinates><panel_attributes>ProgrammingAssignment 
+-
+-_language: string
+-_repository: string
+--
++ProgrammingAssignment(id: string, title: string, dueDate: DateTime, course: Course, language: string)
++GetLanguage(): string
++SetLanguage(language: string): void
++GetRepository(): string
++SetRepository(repository: string): void
++CalculateEstimatedTime(): double
+ +Clone(): Assignment</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>690</y><w>610</w><h>340</h></coordinates><panel_attributes>AssignmentManager
+--
+-courses: List~Course~
+        -allAssignments: List&lt;Assignment&gt;
+        -nextAssignmentId: int
+--
++AssignmentManager()
++AddCourse(course: Course): void
++RemoveCourse(courseId: string): bool
++GetCourse(courseId: string): Course
++GetAllCourses(): List~Course~
++CreateAssignment(type: AssignmentType, courseId: string, title: string, dueDate: DateTime): Assignment
++AddAssignment(assignment: Assignment): void
++RemoveAssignment(assignmentId: string): bool
++GetAssignment(assignmentId: string): Assignment
++GetAllAssignments(): List~Assignment~
++GetAssignmentsByCourse(courseId: string): List~Assignment~
++GetAssignmentsByDueDate(startDate: DateTime, endDate: DateTime): List~Assignment~
++GetOverdueAssignments(): List~Assignment~
++GetUpcomingAssignments(days: int): List~Assignment~
++SaveToFile(filename: string): void
++LoadFromFile(filename: string): void
++GenerateAssignmentId(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>600</y><w>250</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>230;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>580</y><w>400</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;30;380;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1270</x><y>270</y><w>180</w><h>130</h></coordinates><panel_attributes>ReadingAssignment 
+- _source
+_
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>380</y><w>390</w><h>280</h></coordinates><panel_attributes>Calendar
+--
+-_currentWeek: DateTime
+-_events: Dictionary~DateTime, List~Assignment~~
+-
++Calendar()
++GetCurrentWeek(): DateTime
++SetCurrentWeek(week: DateTime): void
++AddAssignmentToCalendar(assignment: Assignment): void
++RemoveAssignmentFromCalendar(assignmentId: string): void
++GetAssignmentsForDate(date: DateTime): List~Assignment~
++GetAssignmentsForWeek(weekStart: DateTime): List&lt;Assignment&gt;
++GetAssignmentsForMonth(month: int, year: int): List&lt;Assignment&gt;
++GetNextWeek(): DateTime
++GetPreviousWeek(): DateTime
++IsWeekend(date: DateTime): bool
++GetWorkingDaysUntil(dueDate: DateTime): int
++GenerateWeeklyView(): string
++GenerateMonthlyView(): string</panel_attributes><additional_attributes></additional_attributes></element></diagram>
