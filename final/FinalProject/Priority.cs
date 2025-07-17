@@ -1,6 +1,7 @@
-public enum Priority {
-        LOW,
-        MEDIUM,
-        HIGH,
-        URGENT,
-    }
+public enum Priority
+{
+    LOW,
+    NORMAL,
+    HIGH,
+    URGENT,
+}

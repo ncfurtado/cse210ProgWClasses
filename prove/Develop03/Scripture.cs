@@ -1,54 +1,73 @@
 class Scripture
 {
-    private string _scriptureText;
+    private string _text;
     private Reference _reference;
-    // private List<Reference> _verses;
-    private Word[] _words;
+    private List<Word> _words;
 
-
-    // public Scripture(string reference, List<string> verses)
-    // {
-    //     _reference = reference;
-    //     _verses = new List<Reference>();
-    //     foreach (string verse in verses)
-    //     {
-    //         _verses.Add(new Reference(verse));
-    //     }
-    // }
     public Scripture()
     { }
 
     public Scripture(string text, Reference reference)
     {
-        string[] parts = text.Split();
-        // Split the text of the verse into individual words.
-
-        _words = new Word[parts.Length];
-        // Create an array of words.
+        _text = text;
+        _reference = reference;
+        _words = new List<Word>();
+        string[] parts = _text.Split();
 
         for (int i = 0; i < parts.Length; i++)
         {
-            _words[i] = new Word(parts[i]);
+            _words.Add(new Word(parts[i]));
         }
     }
+
     public void DisplayScripture()
     {
         Console.WriteLine(_reference.GetReference());
+        foreach (Word word in _words)
+        {
+            Console.Write(word.GetText() + " "); // Assuming this returns either text or underscores
+        }
+        Console.WriteLine();
     }
 
-    
-    public void HideWords()
+    public void HideRandomWords()
     {
-        for (int i = 0; i < _words; i++)
-    }
+        // Get available indexes (words that are still visible)
+        List<int> availableIndexes = new List<int>();
+        for (int i = 0; i < _words.Count; i++)
+        {
+            if (_words[i].GetVisibility()) // Only add if word is still visible
+            {
+                availableIndexes.Add(i);
+            }
+        }
 
+        // Hide 2-3 random words from available ones
+        Random random = new Random();
+        int wordsToHide = Math.Min(3, availableIndexes.Count);
+
+        for (int i = 0; i < wordsToHide; i++)
+        {
+            if (availableIndexes.Count > 0)
+            {
+                int randomIndex = random.Next(availableIndexes.Count);
+                int wordIndex = availableIndexes[randomIndex];
+
+                _words[wordIndex].Hide(); // Hide the word
+                availableIndexes.RemoveAt(randomIndex);
+            }
+        }
+    }
 
     public bool IsCompletelyInvisible()
     {
-        for ()
+        foreach (Word word in _words)
         {
-            if GetVisibility()
-
+            if (word.GetVisibility()) // If any word is still visible
+            {
+                return false;
+            }
         }
+        return true; // All words are hidden
     }
 }

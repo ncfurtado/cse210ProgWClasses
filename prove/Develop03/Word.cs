@@ -2,15 +2,26 @@ class Word
 {
     private string _text;
     private bool _visible;
+
+    // constructor
     public Word(string text)
     {
         _text = text;
         _visible = true;
     }
-    public void MakeInvisible()
+
+    public string GetText()
     {
-        _visible = false;
+        return _text;
     }
+
+    public void Hide()
+    {
+        _text = new string('_', _text.Length);
+        _visible = false;
+
+    }
+
 
     
     public bool GetVisibility()
@@ -20,11 +31,14 @@ class Word
 
     public string Display()
     {
-        if (GetVisibility() == true)
+        if (GetVisibility())
         {
             return _text;
         }
-        return //underscores
-        // Return the number of underscores as long as the word
+        else
+        {
+            return new string('_', _text.Length);
+            // Return underscores for invisible words
+        }
     }
 }

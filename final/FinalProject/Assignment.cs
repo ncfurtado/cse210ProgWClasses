@@ -1,148 +1,148 @@
 abstract class Assignment
 {
 
-    protected string _assignmentId;
-    protected string _title;
-    protected string _description;
-    protected DateTime _dueDate;
-    protected  Priority _priority;
-    protected  AssignmentStatus _status;
-    protected double _estimatedHours;
-    protected double _actualHours;
-    protected Course _course;
-    protected DateTime _dateCreated;
-    protected DateTime _lastModified;
+    protected string AssignmentId { get { return AssignmentId; } set { AssignmentId = value; } }
+    protected string Title { get { return Title; } set { Title = value; } }
+    protected string Description { get { return Description; } set { Description = value; } }
+    protected DateTime DueDate { get { return DueDate; } set { DueDate = value; } }
+    protected Priority Priority { get { return Priority; } set { Priority = value; } }
+    protected AssignmentStatus Status { get { return Status; } set { Status = value; } }
+    protected double EstimatedHours { get { return EstimatedHours; } set { EstimatedHours = value; } }
+    protected double ActualHours { get { return ActualHours; } set { ActualHours = value; } }
+    protected Course Course { get { return Course; } set { Course = value; } }
+    protected DateTime DateCreated { get { return DateCreated; } set { DateCreated = value; } }
+    protected DateTime LastModified { get { return LastModified; } set { LastModified = value; } }
 
     public Assignment(string id, string title, DateTime dueDate, Course course)
     {
-        _assignmentId = id;
-        _title = title;
-        _dueDate = dueDate;
-        _course = course;
-        _priority = Priority.Normal;
-        _status = AssignmentStatus;
-        _estimatedHours = 0.0
-        _actualHours = 0.0
-        _dateCreated = DateTime.Now
-        _lastModified = DateTime.Now
-        }
+        AssignmentId = id;
+        Title = title;
+        DueDate = dueDate;
+        Course = course;
+        Priority = Priority.NORMAL;
+        Status = AssignmentStatus.NOT_STARTED;
+        EstimatedHours = 0.0;
+        ActualHours = 0.0;
+        DateCreated = DateTime.Now;
+        LastModified = DateTime.Now;
+    }
     public string GetAssignmentId()
     {
-
+        return AssignmentId;
     }
 
 
     public string GetTitle()
     {
-        return _title;
+        return Title;
     }
 
 
     public void SetTitle(string title)
     {
-        _title = title;
+        Title = title;
     }
 
 
     public string GetDescription()
     {
-        return _description;
+        return Description;
     }
 
 
     public void SetDescription(string description)
     {
-        _description = description;
+        Description = description;
     }
 
 
     public DateTime GetDueDate()
     {
-        return _dueDate;
+        return DueDate;
     }
 
 
     public void SetDueDate(DateTime dueDate)
     {
-        _dueDate = dueDate;
+        DueDate = dueDate;
     }
 
 
     public Priority GetPriority()
     {
-        return _priority;
+        return Priority;
     }
 
 
     public void SetPriority(Priority priority)
     {
-        _priority = priority;
+        Priority = priority;
     }
 
 
     public AssignmentStatus GetStatus()
     {
-        return _status;
+        return Status;
     }
 
 
     public void SetStatus(AssignmentStatus status)
     {
-        _status = status;
+        Status = status;
     }
 
 
     public Course GetCourse()
     {
-        return _course;
+        return Course;
     }
 
 
     public double GetEstimatedHours()
     {
-        return _estimatedHours;
+        return EstimatedHours;
     }
 
 
     public void SetEstimatedHours(double hours)
     {
-        _estimatedHours = hours;
+        EstimatedHours = hours;
     }
 
 
     public double GetActualHours()
     {
-        return _actualHours;
+        return ActualHours;
     }
 
 
     public void AddActualHours(double hours)
     {
-        _actualHours += hours;
+        ActualHours += hours;
     }
 
 
     public int GetDaysUntilDue()
     {
-        return (int)(_dueDate - DateTime.Now).TotalDays;
+        return (int)(DueDate - DateTime.Now).TotalDays;
     }
 
 
     public bool IsOverdue()
     {
-        return DateTime.Now > _dueDate && _status != AssignmentStatus.Completed;
+        return DateTime.Now > DueDate && Status != AssignmentStatus.COMPLETED;
     }
 
 
     public bool IsComplete()
     {
-        return _status == AssignmentStatus.Completed;
+        return Status == AssignmentStatus.COMPLETED;
     }
 
 
     public double CalculateEstimatedTime()
     {
-        return _estimatedHours;
+        return EstimatedHours;
     }
 
 
@@ -164,14 +164,15 @@ abstract class Assignment
     }
 
 
-    public string ToString()
+    public override string ToString()
     {
-        return $"{_title} (Due: {_dueDate})";
+        return $"{Title} (Due: {DueDate})";
     }
 
 
     public bool Equals(Assignment other)
     {
         if (other == null) return false;
-        return _assignmentId == other._assignmentId;
+        return AssignmentId == other.AssignmentId;
     }
+}
