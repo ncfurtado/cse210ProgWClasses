@@ -1,24 +1,35 @@
-abstract class Assignment
+public abstract class Assignment
 {
 
-    protected string AssignmentId { get { return AssignmentId; } set { AssignmentId = value; } }
-    protected string Title { get { return Title; } set { Title = value; } }
-    protected string Description { get { return Description; } set { Description = value; } }
-    protected DateTime DueDate { get { return DueDate; } set { DueDate = value; } }
-    protected Priority Priority { get { return Priority; } set { Priority = value; } }
-    protected AssignmentStatus Status { get { return Status; } set { Status = value; } }
-    protected double EstimatedHours { get { return EstimatedHours; } set { EstimatedHours = value; } }
-    protected double ActualHours { get { return ActualHours; } set { ActualHours = value; } }
-    protected Course Course { get { return Course; } set { Course = value; } }
-    protected DateTime DateCreated { get { return DateCreated; } set { DateCreated = value; } }
-    protected DateTime LastModified { get { return LastModified; } set { LastModified = value; } }
+    protected string _assignmentId;
+    protected string AssignmentId { get { return _assignmentId; } set { _assignmentId = value; } }
+    protected string _title;
+    protected string Title { get { return _title; } set { _title = value; } }
+    protected string _description;
+    protected string Description { get { return _description; } set { _description = value; } }
+    protected DateTime _dueDate;
+    protected DateTime DueDate { get { return _dueDate; } set { _dueDate = value; } }
+    protected Priority _priority;
+    protected Priority Priority { get { return _priority; } set { _priority = value; } }
+    protected AssignmentStatus _status;
+    protected AssignmentStatus Status { get { return _status; } set { _status = value; } }
+    protected double _estimatedHours;
+    protected double EstimatedHours { get { return _estimatedHours; } set { _estimatedHours = value; } }
+    protected double _actualHours;
+    protected double ActualHours { get { return _actualHours; } set { _actualHours = value; } }
+    protected string _courseId;
+    protected string CourseId { get { return _courseId; } set { _courseId = value; } }
+    protected DateTime _dateCreated;
+    protected DateTime DateCreated { get { return _dateCreated; } set { _dateCreated = value; } }
+    protected DateTime _lastModified;
+    protected DateTime LastModified { get { return _lastModified; } set { _lastModified = value; } }
 
     public Assignment(string id, string title, DateTime dueDate, Course course)
     {
         AssignmentId = id;
         Title = title;
         DueDate = dueDate;
-        Course = course;
+        CourseId = course.GetCourseId();
         Priority = Priority.NORMAL;
         Status = AssignmentStatus.NOT_STARTED;
         EstimatedHours = 0.0;
@@ -92,9 +103,9 @@ abstract class Assignment
     }
 
 
-    public Course GetCourse()
+    public string GetCourseId()
     {
-        return Course;
+        return _courseId;
     }
 
 
@@ -139,8 +150,12 @@ abstract class Assignment
         return Status == AssignmentStatus.COMPLETED;
     }
 
+    public void SetLastModified(DateTime lastModified)
+    {
+        LastModified = lastModified;
+    }
 
-    public double CalculateEstimatedTime()
+    public virtual double CalculateEstimatedTime()
     {
         return EstimatedHours;
     }
@@ -158,21 +173,15 @@ abstract class Assignment
     }
 
 
-    public Assignment Clone()
+    public virtual Assignment Clone()
     {
         return (Assignment)this.MemberwiseClone();
     }
-
-
-    public override string ToString()
+    public virtual string PrintStringData()
     {
-        return $"{Title} (Due: {DueDate})";
+        // Prints alli data for the assignmentr in comma separated format in onet line for easy loading
+        return $"{GetAssignmentId()},{GetTitle()},{GetDueDate().ToShortDateString()},{GetCourseId()},{GetEstimatedHours()},{GetActualHours()},{GetPriority()},{GetStatus()}";
     }
 
 
-    public bool Equals(Assignment other)
-    {
-        if (other == null) return false;
-        return AssignmentId == other.AssignmentId;
-    }
 }

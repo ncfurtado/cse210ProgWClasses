@@ -1,9 +1,9 @@
-<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>308</x><y>216</y><w>147</w><h>56</h></coordinates><panel_attributes>Program
+<diagram program="umletino" version="15.1"><zoom_level>16</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>752</x><y>448</y><w>336</w><h>128</h></coordinates><panel_attributes>Program
 --
 - menuChoice
 --
 + Menu()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>623</x><y>20</y><w>147</w><h>427</h></coordinates><panel_attributes>&lt;Abstract&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1472</x><y>0</y><w>336</w><h>976</h></coordinates><panel_attributes>&lt;Abstract&gt;
 Assignment
 -
 #_assignmentId: string
@@ -40,7 +40,7 @@ Assignment
 +CalculateEstimatedTime(): double*
 +GetRequiredResources(): List~string~*
 +GetCompletionCriteria(): List~string~*
-+Equals(other: Assignment): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>476</x><y>643</y><w>371</w><h>196</h></coordinates><panel_attributes>ProgressTracker
++Equals(other: Assignment): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1136</x><y>1424</y><w>848</w><h>448</h></coordinates><panel_attributes>ProgressTracker
 -
 -_progressData: Dictionary~string, AssignmentProgress~
 --
@@ -58,7 +58,7 @@ Assignment
 +GetEstimatedTimeRemaining(assignmentId: string): TimeSpan
 +GetAssignmentsByProgress(minProgress: double, maxProgress: double): List~Assignment~
 +GenerateProgressReport(): string
-+ResetProgress(assignmentId: string): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>882</x><y>433</y><w>378</w><h>315</h></coordinates><panel_attributes>GroupAssignment 
++ResetProgress(assignmentId: string): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2064</x><y>944</y><w>864</w><h>720</h></coordinates><panel_attributes>GroupAssignment 
 -
  -_groupMembers: List~string~
 -_groupLeader: string
@@ -88,7 +88,7 @@ Assignment
 +GetCompletionCriteria(): List~string~
 +Clone(): Assignment
 +GenerateTaskDistribution(): string
-+ScheduleGroupMeeting(dateTime: DateTime): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>798</x><y>216</y><w>63</w><h>77</h></coordinates><panel_attributes>Priority
++ScheduleGroupMeeting(dateTime: DateTime): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1952</x><y>352</y><w>144</w><h>176</h></coordinates><panel_attributes>Priority
 Enum
 -
 LOW
@@ -96,7 +96,7 @@ MEDIUM
 HIGH
 URGENT
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>35</x><y>216</y><w>217</w><h>238</h></coordinates><panel_attributes>Course
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>128</x><y>448</y><w>496</w><h>544</h></coordinates><panel_attributes>Course
 -
 - _courseId: string
 - _courseName: string
@@ -118,7 +118,7 @@ URGENT
 +GetAssignments(): List&lt;Assignment&gt;
 +GetAssignmentCount(): int
 +GetAverageGrade(): double
-+ToString(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>503</y><w>413</w><h>119</h></coordinates><panel_attributes>ProgrammingAssignment 
++ToString(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1072</x><y>1104</y><w>944</w><h>272</h></coordinates><panel_attributes>ProgrammingAssignment 
 -
 -_language: string
 -_repository: string
@@ -129,7 +129,7 @@ URGENT
 +GetRepository(): string
 +SetRepository(repository: string): void
 +CalculateEstimatedTime(): double
- +Clone(): Assignment</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>14</x><y>503</y><w>427</w><h>238</h></coordinates><panel_attributes>AssignmentManager
+ +Clone(): Assignment</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>1104</y><w>976</w><h>544</h></coordinates><panel_attributes>AssignmentManager
 --
 -courses: List~Course~
         -allAssignments: List&lt;Assignment&gt;
@@ -151,7 +151,7 @@ URGENT
 +GetUpcomingAssignments(days: int): List~Assignment~
 +SaveToFile(filename: string): void
 +LoadFromFile(filename: string): void
-+GenerateAssignmentId(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>525</x><y>440</y><w>182</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>240;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>686</x><y>426</y><w>280</w><h>35</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;30;380;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>266</x><y>286</y><w>273</w><h>196</h></coordinates><panel_attributes>Calendar
++GenerateAssignmentId(): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>960</y><w>416</w><h>176</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>240;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1616</x><y>928</y><w>640</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;30;380;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>656</x><y>608</y><w>624</w><h>448</h></coordinates><panel_attributes>Calendar
 --
 -_currentWeek: DateTime
 -_events: Dictionary~DateTime, List~Assignment~~
