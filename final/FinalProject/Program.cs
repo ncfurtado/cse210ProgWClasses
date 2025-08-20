@@ -499,28 +499,25 @@ partial class Program
             {
                 if (parts[0].StartsWith("Course:"))
                 {
-                    // Extract the course ID from "Course:CSE210"
-                    string courseId = parts[0].Substring(7); // Remove "Course:" prefix (7 characters)
+                    string courseId = parts[0].Substring(7);
                     string courseName = parts[1];
                     string instructor = parts[2]; 
                     int creditHours = int.Parse(parts[3]);
                     string semester = parts[4];
                     
                     Course course = new Course(courseId, courseName, instructor, creditHours, semester);
-                    myCourses.Add(course); // Add the course to the list
+                    myCourses.Add(course); 
                     Console.WriteLine($"Loaded course: {courseId} - {courseName}");
                 }
                 else if (parts[0].StartsWith("ProgrammingAssignment:"))
                 {
-                    // Extract assignment ID from "ProgrammingAssignment:12345"
-                    string assignmentId = parts[0].Substring(21); // Remove "ProgrammingAssignment:" prefix
+                    string assignmentId = parts[0].Substring(21);
                     string title = parts[1];
                     DateTime dueDate = DateTime.Parse(parts[2]);
-                    string courseId = parts[3]; // Assuming you save just the course ID
+                    string courseId = parts[3]; 
                     string programmingLanguage = parts[4];
                     string repository = parts[5];
                     
-                    // Find the course object
                     Course assignmentCourse = myCourses.FirstOrDefault(c => c.GetCourseId() == courseId);
                     if (assignmentCourse != null)
                     {
@@ -532,8 +529,7 @@ partial class Program
                 }
                 else if (parts[0].StartsWith("GroupAssignment:"))
                 {
-                    // Extract assignment ID from "GroupAssignment:12345"
-                    string assignmentId = parts[0].Substring(16); // Remove "GroupAssignment:" prefix
+                    string assignmentId = parts[0].Substring(16);
                     string title = parts[1];
                     DateTime dueDate = DateTime.Parse(parts[2]);
                     string courseId = parts[3];
